@@ -17,5 +17,10 @@ namespace WebStore.Controllers
             IEnumerable<Categoria> lista = _context.Categorias;
             return View(lista);
         }
+        //Get
+        public IActionResult Crear()
+        {
+            return View();
+        }
     }
 }
