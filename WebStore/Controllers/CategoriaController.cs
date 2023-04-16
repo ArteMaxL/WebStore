@@ -33,5 +33,49 @@ namespace WebStore.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //Get Editar
+        public IActionResult Editar(int? Id)
+        {
+            if (Id == null || Id == 0) {  return NotFound(); }
+
+            var obj = _context.Categorias.Find(Id);
+            if (obj == null) { return NotFound(); }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(Categoria categoria)
+        {
+            if (!ModelState.IsValid) { return View(categoria); }
+
+            _context.Categorias.Update(categoria);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        //Get Eliminar
+        public IActionResult Eliminar(int? Id)
+        {
+            if (Id == null || Id == 0) { return NotFound(); }
+
+            var obj = _context.Categorias.Find(Id);
+            if (obj == null) { return NotFound(); }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Eliminar(Categoria categoria)
+        {
+            if (categoria == null) { return NotFound(); }
+
+            _context.Categorias.Remove(categoria);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
