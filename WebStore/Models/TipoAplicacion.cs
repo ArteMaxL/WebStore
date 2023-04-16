@@ -6,6 +6,8 @@ namespace WebStore.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Nombre de Tipo de Aplicacion es obligatorio.")]
         public string? Nombre { get; set; }
     }
 }
