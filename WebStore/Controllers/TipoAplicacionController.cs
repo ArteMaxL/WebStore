@@ -4,19 +4,20 @@ using WebStore.Models;
 
 namespace WebStore.Controllers
 {
-    public class CategoriaController : Controller
+    public class TipoAplicacionController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoriaController(ApplicationDbContext db)
+        public TipoAplicacionController(ApplicationDbContext db)
         {
             _context = db;
         }
         public IActionResult Index()
         {
-            IEnumerable<Categoria> lista = _context.Categorias;
+            IEnumerable<TipoAplicacion> lista = _context.TipoAplicaciones;
             return View(lista);
         }
+
         //Get
         public IActionResult Crear()
         {
@@ -25,11 +26,9 @@ namespace WebStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Crear(Categoria categoria)
+        public IActionResult Crear(TipoAplicacion tipoAplicacion)
         {
-            if (!ModelState.IsValid) { return View(categoria); }
-
-            _context.Categorias.Add(categoria);
+            _context.TipoAplicaciones.Add(tipoAplicacion);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,5 +10,6 @@ namespace WebStore.Datos
             
         }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<TipoAplicacion> TipoAplicaciones { get; set; }
     }
 }
